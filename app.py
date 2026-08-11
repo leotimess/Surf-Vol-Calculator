@@ -200,8 +200,6 @@ div[data-testid="stSlider"] {
 }
 
 
-/* trilho */
-
 div[data-testid="stSlider"]
 [data-baseweb="slider"]
 > div
@@ -210,8 +208,6 @@ div[data-testid="stSlider"]
     background-color: #174e5f !important;
 }
 
-
-/* parte preenchida */
 
 div[data-testid="stSlider"]
 [data-baseweb="slider"]
@@ -222,8 +218,6 @@ div[data-testid="stSlider"]
     background-color: #08a7d2 !important;
 }
 
-
-/* bolinha */
 
 div[data-testid="stSlider"]
 [role="slider"] {
@@ -484,11 +478,6 @@ with col_esquerda:
             unsafe_allow_html=True
         )
 
-
-        # ----------------------------------------------------
-        # PESO
-        # ----------------------------------------------------
-
         st.markdown(
             '<div class="question-label">SEU PESO</div>',
             unsafe_allow_html=True
@@ -505,10 +494,6 @@ with col_esquerda:
         )
 
 
-        # ----------------------------------------------------
-        # ALTURA
-        # ----------------------------------------------------
-
         st.markdown(
             '<div class="question-label">SUA ALTURA</div>',
             unsafe_allow_html=True
@@ -524,10 +509,6 @@ with col_esquerda:
             label_visibility="collapsed"
         )
 
-
-        # ----------------------------------------------------
-        # NÍVEL
-        # ----------------------------------------------------
 
         st.markdown(
             '<div class="question-label">NÍVEL DE SURF</div>',
@@ -554,10 +535,6 @@ with col_esquerda:
         )
 
 
-        # ----------------------------------------------------
-        # FREQUÊNCIA
-        # ----------------------------------------------------
-
         st.markdown(
             """
             <div class="question-label">
@@ -577,10 +554,6 @@ with col_esquerda:
             label_visibility="collapsed"
         )
 
-
-        # ----------------------------------------------------
-        # EXPERIÊNCIA
-        # ----------------------------------------------------
 
         st.markdown(
             """
@@ -602,10 +575,6 @@ with col_esquerda:
         st.markdown("<br>", unsafe_allow_html=True)
 
 
-        # ----------------------------------------------------
-        # BOTÃO
-        # ----------------------------------------------------
-
         calcular = st.button(
             "🏄  CALCULAR MEU VOLUME",
             use_container_width=True
@@ -617,10 +586,6 @@ with col_esquerda:
 # ============================================================
 
 if calcular:
-
-    # --------------------------------------------------------
-    # PESSOA QUE NUNCA SURFOU
-    # --------------------------------------------------------
 
     if ja_surfou == "NÃO":
 
@@ -635,33 +600,18 @@ if calcular:
             "e facilita o aprendizado."
         )
 
-
-    # --------------------------------------------------------
-    # PESSOA QUE JÁ SURFOU
-    # --------------------------------------------------------
-
     else:
 
         coeficientes = {
-
             1: 0.65,
-
             2: 0.50,
-
             3: 0.42,
-
             4: 0.36,
-
             5: 0.32
         }
 
-
         cf = coeficientes[nivel]
 
-
-        # ----------------------------------------------------
-        # FREQUÊNCIA
-        # ----------------------------------------------------
 
         if frequencia >= 5:
 
@@ -676,16 +626,8 @@ if calcular:
             multiplicador = 0
 
 
-        # ----------------------------------------------------
-        # FÓRMULA
-        # ----------------------------------------------------
-
         volume = peso * cf + multiplicador
 
-
-        # ----------------------------------------------------
-        # TIPO DE PRANCHA
-        # ----------------------------------------------------
 
         if nivel == 1:
 
@@ -696,7 +638,6 @@ if calcular:
                 "a remada, o equilíbrio e a evolução."
             )
 
-
         elif nivel == 2:
 
             tipo_prancha = "FUNBOARD"
@@ -705,7 +646,6 @@ if calcular:
                 "Um ótimo equilíbrio entre estabilidade, "
                 "velocidade e facilidade de uso."
             )
-
 
         elif nivel == 3:
 
@@ -716,7 +656,6 @@ if calcular:
                 "boa base e quer começar a buscar mais performance."
             )
 
-
         elif nivel == 4:
 
             tipo_prancha = "SHORTBOARD"
@@ -726,7 +665,6 @@ if calcular:
                 "para quem já possui bastante controle."
             )
 
-
         else:
 
             tipo_prancha = "PERFORMANCE"
@@ -735,7 +673,6 @@ if calcular:
                 "Menor volume e maior responsividade para "
                 "surfistas experientes buscando performance."
             )
-
 
 else:
 
@@ -752,20 +689,11 @@ else:
 
 with col_centro:
 
-    # --------------------------------------------------------
-    # TAMANHO INICIAL
-    # --------------------------------------------------------
-
     if volume is None:
 
         board_height = 440
 
         board_width = 82
-
-
-    # --------------------------------------------------------
-    # TAMANHO DINÂMICO
-    # --------------------------------------------------------
 
     else:
 
@@ -779,7 +707,6 @@ with col_centro:
             )
         )
 
-
         board_width = int(
             max(
                 70,
@@ -792,20 +719,20 @@ with col_centro:
 
 
     # --------------------------------------------------------
-    # VOLUME DA PRANCHA
+    # TEXTO DA PRANCHA
     # --------------------------------------------------------
 
-    if volume is not None:
+    if volume is None:
 
-        volume_text = f"{volume:.1f}L"
+        board_text = ""
 
     else:
 
-        volume_text = ""
+        board_text = f"{volume:.1f} LITROS"
 
 
     # --------------------------------------------------------
-    # HTML DA PRANCHA
+    # PRANCHA
     # --------------------------------------------------------
 
     board_html = f"""
@@ -957,49 +884,35 @@ body {{
 }}
 
 
-.logo {{
+.board-text {{
 
     position: absolute;
 
-    top: 45%;
-
     left: 50%;
+
+    top: 50%;
 
     transform:
         translate(-50%, -50%)
         rotate(-90deg);
 
-    font-family: Arial Black;
+    font-family: 'Anton', Arial Black, sans-serif;
 
-    font-size: 25px;
+    font-size: 26px;
 
-    letter-spacing: 3px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
 
     color: #078eaf;
 
     white-space: nowrap;
-}}
 
+    text-align: center;
 
-.volume {{
+    max-width: 85%;
 
-    position: absolute;
-
-    left: 50%;
-
-    top: 57%;
-
-    transform:
-        translate(-50%, -50%)
-        rotate(-90deg);
-
-    font-family: Arial Black;
-
-    font-size: 15px;
-
-    color: rgba(7,142,175,0.7);
-
-    white-space: nowrap;
+    z-index: 10;
 }}
 
 
@@ -1044,12 +957,8 @@ body {{
 
         <div class="stringer"></div>
 
-        <div class="logo">
-            SURF
-        </div>
-
-        <div class="volume">
-            {volume_text}
+        <div class="board-text">
+            {board_text}
         </div>
 
         <div class="fin"></div>
@@ -1063,10 +972,6 @@ body {{
 </html>
 """
 
-
-    # --------------------------------------------------------
-    # MOSTRAR PRANCHA
-    # --------------------------------------------------------
 
     components.html(
         board_html,
@@ -1089,9 +994,9 @@ with col_direita:
         )
 
 
-        # ----------------------------------------------------
-        # ANTES DO CÁLCULO
-        # ----------------------------------------------------
+        # ====================================================
+        # ANTES DE CALCULAR
+        # ====================================================
 
         if not calcular:
 
@@ -1130,31 +1035,35 @@ with col_direita:
             )
 
 
-        # ----------------------------------------------------
-        # DEPOIS DO CÁLCULO
-        # ----------------------------------------------------
+        # ====================================================
+        # RESULTADO
+        # ====================================================
 
         else:
 
+            # ------------------------------------------------
+            # LABEL
+            # ------------------------------------------------
+
             st.markdown(
-                """
-                <div class="rec-label">
-                    SUA PRANCHA IDEAL
-                </div>
-                """,
+                '<div class="rec-label">SUA PRANCHA IDEAL</div>',
                 unsafe_allow_html=True
             )
 
 
+            # ------------------------------------------------
+            # TIPO DA PRANCHA
+            # ------------------------------------------------
+
             st.markdown(
-                f"""
-                <div class="rec-board">
-                    {tipo_prancha}
-                </div>
-                """,
+                f'<div class="rec-board">{tipo_prancha}</div>',
                 unsafe_allow_html=True
             )
 
+
+            # ------------------------------------------------
+            # LINHA
+            # ------------------------------------------------
 
             st.markdown(
                 '<div class="rec-line"></div>',
@@ -1162,35 +1071,35 @@ with col_direita:
             )
 
 
+            # ------------------------------------------------
+            # VOLUME
+            # ------------------------------------------------
+
             st.markdown(
-                """
-                <div class="rec-label">
-                    VOLUME RECOMENDADO
-                </div>
-                """,
+                '<div class="rec-label">VOLUME RECOMENDADO</div>',
                 unsafe_allow_html=True
             )
 
 
             st.markdown(
-                f"""
-                <div class="rec-volume">
-                    {volume:.1f}L
-                </div>
-                """,
+                f'<div class="rec-volume">{volume:.1f}L</div>',
                 unsafe_allow_html=True
             )
 
+
+            # ------------------------------------------------
+            # DESCRIÇÃO
+            # ------------------------------------------------
 
             st.markdown(
-                f"""
-                <div class="rec-description">
-                    {descricao}
-                </div>
-                """,
+                f'<div class="rec-description">{descricao}</div>',
                 unsafe_allow_html=True
             )
 
+
+            # ------------------------------------------------
+            # LINHA
+            # ------------------------------------------------
 
             st.markdown(
                 '<div class="rec-line"></div>',
