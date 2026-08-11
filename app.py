@@ -127,18 +127,14 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
 
 
 /* ==========================================================
-   TÍTULOS
+   TÍTULOS DOS PAINÉIS
    ========================================================== */
 
 .panel-title {
     font-family: 'Bebas Neue', sans-serif;
-
     font-size: 34px;
-
     letter-spacing: 2px;
-
     color: #f5f3e9;
-
     margin-bottom: 15px;
 }
 
@@ -300,10 +296,6 @@ div[data-testid="stButton"] > button:hover {
     letter-spacing: 2px;
 
     color: #19b8df;
-
-    margin-top: 8px;
-
-    margin-bottom: 5px;
 }
 
 
@@ -319,7 +311,9 @@ div[data-testid="stButton"] > button:hover {
 
     line-height: 1;
 
-    margin-bottom: 18px;
+    margin-top: 4px;
+
+    margin-bottom: 15px;
 }
 
 
@@ -335,7 +329,7 @@ div[data-testid="stButton"] > button:hover {
 
     color: #19b8df;
 
-    margin-bottom: 3px;
+    margin-bottom: 0;
 }
 
 
@@ -349,7 +343,7 @@ div[data-testid="stButton"] > button:hover {
 
     line-height: 1;
 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 
@@ -363,75 +357,7 @@ div[data-testid="stButton"] > button:hover {
 
     color: #c6dfe5;
 
-    margin-bottom: 20px;
-}
-
-
-.recommendation-divider {
-
-    width: 100%;
-
-    height: 1px;
-
-    background: rgba(255,255,255,0.08);
-
-    margin: 18px 0;
-}
-
-
-/* ==========================================================
-   PLACEHOLDER NATIVO
-   ========================================================== */
-
-div[data-testid="stVerticalBlock"] .placeholder-text {
-
-    text-align: center;
-
-    color: #5c909d;
-
-    font-family: 'DM Sans', sans-serif;
-
-    font-size: 13px;
-
-    line-height: 1.8;
-}
-
-
-.placeholder-wave {
-
-    font-size: 50px;
-
-    text-align: center;
-
-    margin-bottom: 10px;
-}
-
-
-.placeholder-title {
-
-    font-family: 'DM Sans', sans-serif;
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    text-align: center;
-
-    color: #5c909d;
-
-    letter-spacing: 0.5px;
-}
-
-
-.placeholder-normal {
-
-    font-family: 'DM Sans', sans-serif;
-
-    font-size: 13px;
-
-    text-align: center;
-
-    color: #5c909d;
+    margin-bottom: 18px;
 }
 
 
@@ -455,6 +381,8 @@ div[data-testid="stVerticalBlock"] .placeholder-text {
 
 .info-name {
 
+    font-family: 'DM Sans', sans-serif;
+
     font-size: 9px;
 
     font-weight: 800;
@@ -467,6 +395,8 @@ div[data-testid="stVerticalBlock"] .placeholder-text {
 
 .info-value {
 
+    font-family: 'DM Sans', sans-serif;
+
     font-size: 13px;
 
     font-weight: 700;
@@ -474,6 +404,16 @@ div[data-testid="stVerticalBlock"] .placeholder-text {
     color: #f5f3e9;
 
     margin-top: 2px;
+}
+
+
+/* ==========================================================
+   PLACEHOLDER
+   ========================================================== */
+
+.placeholder-space {
+
+    height: 300px;
 }
 
 </style>
@@ -721,9 +661,7 @@ if calcular:
 else:
 
     volume = None
-
     tipo_prancha = None
-
     descricao = None
 
 
@@ -733,12 +671,9 @@ else:
 
 with col_centro:
 
-    # Aumentada e mais larga
-
     if volume is None:
 
         board_height = 520
-
         board_width = 115
 
     else:
@@ -752,7 +687,6 @@ with col_centro:
                 )
             )
         )
-
 
         board_width = int(
             max(
@@ -773,10 +707,6 @@ with col_centro:
 
         board_text = f"{volume:.1f} LITROS"
 
-
-    # ========================================================
-    # HTML DA PRANCHA
-    # ========================================================
 
     board_html = f"""
 <!DOCTYPE html>
@@ -1041,20 +971,12 @@ with col_direita:
 
         if not calcular:
 
-            # =================================================
-            # IMPORTANTE:
-            # NÃO USAMOS HTML AQUI.
-            # =================================================
-
             st.markdown(
                 "<div style='height:300px'></div>",
                 unsafe_allow_html=True
             )
 
-            st.markdown(
-                "🌊",
-                unsafe_allow_html=False
-            )
+            st.markdown("🌊")
 
             st.markdown(
                 "**AJUSTE SEU PERFIL**"
@@ -1075,127 +997,76 @@ with col_direita:
 
         else:
 
+            # -----------------------------------------------
+            # SUA PRANCHA IDEAL
+            # -----------------------------------------------
+
             st.markdown(
-                '<div class="recommendation-label">'
-                'SUA PRANCHA IDEAL'
-                '</div>',
-                unsafe_allow_html=True
+                "SUA PRANCHA IDEAL"
+            )
+
+            st.markdown(
+                f"## {tipo_prancha}"
             )
 
 
+            st.divider()
+
+
+            # -----------------------------------------------
+            # VOLUME
+            # -----------------------------------------------
+
+            st.caption(
+                "VOLUME RECOMENDADO"
+            )
+
             st.markdown(
-                f'<div class="recommendation-board">'
-                f'{tipo_prancha}'
-                f'</div>',
-                unsafe_allow_html=True
+                f"# {volume:.1f}L"
             )
 
 
-            st.markdown(
-                '<div class="recommendation-divider"></div>',
-                unsafe_allow_html=True
+            # -----------------------------------------------
+            # DESCRIÇÃO
+            # -----------------------------------------------
+
+            st.write(
+                descricao
             )
 
 
-            st.markdown(
-                '<div class="recommendation-volume-label">'
-                'VOLUME RECOMENDADO'
-                '</div>',
-                unsafe_allow_html=True
+            st.divider()
+
+
+            # -----------------------------------------------
+            # INFORMAÇÕES
+            # -----------------------------------------------
+
+            st.caption("PESO")
+
+            st.write(
+                f"{peso} kg"
             )
 
 
-            st.markdown(
-                f'<div class="recommendation-volume">'
-                f'{volume:.1f}L'
-                f'</div>',
-                unsafe_allow_html=True
+            st.caption("ALTURA")
+
+            st.write(
+                f"{altura} cm"
             )
 
 
-            st.markdown(
-                f'<div class="recommendation-description">'
-                f'{descricao}'
-                f'</div>',
-                unsafe_allow_html=True
+            st.caption("NÍVEL")
+
+            st.write(
+                f"{nivel}/5"
             )
 
 
-            st.markdown(
-                '<div class="recommendation-divider"></div>',
-                unsafe_allow_html=True
-            )
+            st.caption("FREQUÊNCIA")
 
-
-            st.markdown(
-                f"""
-                <div class="info-box">
-
-                    <div class="info-name">
-                        PESO
-                    </div>
-
-                    <div class="info-value">
-                        {peso} kg
-                    </div>
-
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
-
-            st.markdown(
-                f"""
-                <div class="info-box">
-
-                    <div class="info-name">
-                        ALTURA
-                    </div>
-
-                    <div class="info-value">
-                        {altura} cm
-                    </div>
-
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
-
-            st.markdown(
-                f"""
-                <div class="info-box">
-
-                    <div class="info-name">
-                        NÍVEL
-                    </div>
-
-                    <div class="info-value">
-                        {nivel}/5
-                    </div>
-
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
-
-            st.markdown(
-                f"""
-                <div class="info-box">
-
-                    <div class="info-name">
-                        FREQUÊNCIA
-                    </div>
-
-                    <div class="info-value">
-                        {frequencia}x por mês
-                    </div>
-
-                </div>
-                """,
-                unsafe_allow_html=True
+            st.write(
+                f"{frequencia}x por mês"
             )
 
 
