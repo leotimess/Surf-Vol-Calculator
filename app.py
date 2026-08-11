@@ -79,9 +79,13 @@ footer {
 
 .surf-title {
     font-family: 'Anton', sans-serif;
+
     font-size: clamp(60px, 7vw, 92px);
+
     letter-spacing: 4px;
+
     line-height: 0.85;
+
     color: #f5f3e9;
 
     text-shadow:
@@ -92,12 +96,17 @@ footer {
 
 .surf-subtitle {
     font-family: 'DM Sans', sans-serif;
+
     font-size: 15px;
+
     font-weight: 800;
+
     letter-spacing: 4px;
+
     color: #16b4dc;
 
     margin-top: 10px;
+
     margin-bottom: 35px;
 }
 
@@ -132,9 +141,13 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
 
 .panel-title {
     font-family: 'Bebas Neue', sans-serif;
+
     font-size: 34px;
+
     letter-spacing: 2px;
+
     color: #f5f3e9;
+
     margin-bottom: 15px;
 }
 
@@ -399,6 +412,10 @@ div[data-testid="stButton"] > button:hover {
 }
 
 
+/* ==========================================================
+   PLACEHOLDER
+   ========================================================== */
+
 .placeholder {
 
     height: 510px;
@@ -512,40 +529,6 @@ div[data-testid="stButton"] > button:hover {
     background: rgba(255,255,255,0.08);
 
     margin: 18px 0;
-}
-
-
-/* ==========================================================
-   PRANCHA
-   ========================================================== */
-
-.board-text {
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%)
-        rotate(-90deg);
-
-    font-family: 'Anton', Arial Black, sans-serif;
-
-    font-size: 26px;
-
-    font-weight: 900;
-
-    letter-spacing: 2px;
-
-    color: #078eaf;
-
-    white-space: nowrap;
-
-    text-align: center;
-
-    z-index: 10;
 }
 
 </style>
@@ -813,8 +796,6 @@ with col_centro:
 
     else:
 
-        # Aumentei a altura e a largura da prancha.
-
         board_height = int(
             max(
                 450,
@@ -837,10 +818,6 @@ with col_centro:
         )
 
 
-    # --------------------------------------------------------
-    # TEXTO DA PRANCHA
-    # --------------------------------------------------------
-
     if volume is None:
 
         board_text = ""
@@ -849,10 +826,6 @@ with col_centro:
 
         board_text = f"{volume:.1f} LITROS"
 
-
-    # --------------------------------------------------------
-    # HTML DA PRANCHA
-    # --------------------------------------------------------
 
     board_html = f"""
 <!DOCTYPE html>
@@ -1117,9 +1090,23 @@ with col_direita:
 
         if not calcular:
 
+            # IMPORTANTE:
+            # Aqui usamos HTML somente em um único markdown.
+            # Não existem elementos Streamlit dentro do HTML.
+
             st.markdown(
                 """
-                <div class="placeholder">
+                <div style="
+                    height:510px;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    text-align:center;
+                    color:#5c909d;
+                    font-family:'DM Sans',sans-serif;
+                    font-size:13px;
+                    line-height:1.8;
+                ">
 
                     <div>
 
@@ -1130,19 +1117,21 @@ with col_direita:
                             🌊
                         </div>
 
-                        <strong>
+                        <div style="
+                            font-weight:800;
+                        ">
                             AJUSTE SEU PERFIL
-                        </strong>
+                        </div>
 
-                        <br>
+                        <div>
+                            E DESCUBRA
+                        </div>
 
-                        E DESCUBRA
-
-                        <br>
-
-                        <strong>
+                        <div style="
+                            font-weight:800;
+                        ">
                             SUA PRANCHA IDEAL
-                        </strong>
+                        </div>
 
                     </div>
 
@@ -1158,10 +1147,6 @@ with col_direita:
 
         else:
 
-            # ------------------------------------------------
-            # LABEL
-            # ------------------------------------------------
-
             st.markdown(
                 '<div class="recommendation-label">'
                 'SUA PRANCHA IDEAL'
@@ -1169,10 +1154,6 @@ with col_direita:
                 unsafe_allow_html=True
             )
 
-
-            # ------------------------------------------------
-            # PRANCHA
-            # ------------------------------------------------
 
             st.markdown(
                 f'<div class="recommendation-board">'
@@ -1187,10 +1168,6 @@ with col_direita:
                 unsafe_allow_html=True
             )
 
-
-            # ------------------------------------------------
-            # VOLUME
-            # ------------------------------------------------
 
             st.markdown(
                 '<div class="recommendation-volume-label">'
@@ -1208,10 +1185,6 @@ with col_direita:
             )
 
 
-            # ------------------------------------------------
-            # DESCRIÇÃO
-            # ------------------------------------------------
-
             st.markdown(
                 f'<div class="recommendation-description">'
                 f'{descricao}'
@@ -1226,15 +1199,13 @@ with col_direita:
             )
 
 
-            # ------------------------------------------------
-            # INFORMAÇÕES
-            # ------------------------------------------------
-
             st.markdown(
                 f"""
                 <div class="info-box">
 
-                    <div class="info-name">PESO</div>
+                    <div class="info-name">
+                        PESO
+                    </div>
 
                     <div class="info-value">
                         {peso} kg
@@ -1250,7 +1221,9 @@ with col_direita:
                 f"""
                 <div class="info-box">
 
-                    <div class="info-name">ALTURA</div>
+                    <div class="info-name">
+                        ALTURA
+                    </div>
 
                     <div class="info-value">
                         {altura} cm
@@ -1266,7 +1239,9 @@ with col_direita:
                 f"""
                 <div class="info-box">
 
-                    <div class="info-name">NÍVEL</div>
+                    <div class="info-name">
+                        NÍVEL
+                    </div>
 
                     <div class="info-value">
                         {nivel}/5
