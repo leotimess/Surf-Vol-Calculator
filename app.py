@@ -79,13 +79,9 @@ footer {
 
 .surf-title {
     font-family: 'Anton', sans-serif;
-
     font-size: clamp(60px, 7vw, 92px);
-
     letter-spacing: 4px;
-
     line-height: 0.85;
-
     color: #f5f3e9;
 
     text-shadow:
@@ -96,17 +92,12 @@ footer {
 
 .surf-subtitle {
     font-family: 'DM Sans', sans-serif;
-
     font-size: 15px;
-
     font-weight: 800;
-
     letter-spacing: 4px;
-
     color: #16b4dc;
 
     margin-top: 10px;
-
     margin-bottom: 35px;
 }
 
@@ -298,150 +289,6 @@ div[data-testid="stButton"] > button:hover {
    RECOMENDAÇÃO
    ========================================================== */
 
-.rec-label {
-
-    font-family: 'DM Sans', sans-serif;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    letter-spacing: 2px;
-
-    color: #19b8df;
-
-    margin-top: 8px;
-}
-
-
-.rec-board {
-
-    font-family: 'Bebas Neue', sans-serif;
-
-    font-size: 43px;
-
-    letter-spacing: 2px;
-
-    color: #f5f3e9;
-
-    line-height: 1;
-
-    margin-top: 5px;
-}
-
-
-.rec-volume {
-
-    font-family: 'Anton', sans-serif;
-
-    font-size: 72px;
-
-    color: #12b9e2;
-
-    line-height: 1;
-
-    margin-top: 12px;
-}
-
-
-.rec-description {
-
-    font-family: 'DM Sans', sans-serif;
-
-    font-size: 13px;
-
-    line-height: 1.6;
-
-    color: #c6dfe5;
-
-    margin-top: 20px;
-}
-
-
-.rec-line {
-
-    height: 1px;
-
-    width: 100%;
-
-    background: rgba(255,255,255,0.08);
-
-    margin: 20px 0;
-}
-
-
-/* ==========================================================
-   INFORMAÇÕES
-   ========================================================== */
-
-.info-box {
-
-    background: rgba(8, 61, 76, 0.65);
-
-    border-left: 3px solid #08a7d1;
-
-    border-radius: 6px;
-
-    padding: 9px 12px;
-
-    margin-top: 8px;
-}
-
-
-.info-name {
-
-    font-size: 9px;
-
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
-
-    color: #65b8c9;
-}
-
-
-.info-value {
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-    color: #f5f3e9;
-
-    margin-top: 2px;
-}
-
-
-/* ==========================================================
-   PLACEHOLDER
-   ========================================================== */
-
-.placeholder {
-
-    height: 510px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    color: #5c909d;
-
-    font-family: 'DM Sans', sans-serif;
-
-    font-size: 13px;
-
-    line-height: 1.8;
-}
-
-
-/* ==========================================================
-   RECOMENDAÇÃO NATIVA
-   ========================================================== */
-
 .recommendation-label {
 
     font-family: 'DM Sans', sans-serif;
@@ -529,6 +376,104 @@ div[data-testid="stButton"] > button:hover {
     background: rgba(255,255,255,0.08);
 
     margin: 18px 0;
+}
+
+
+/* ==========================================================
+   PLACEHOLDER NATIVO
+   ========================================================== */
+
+div[data-testid="stVerticalBlock"] .placeholder-text {
+
+    text-align: center;
+
+    color: #5c909d;
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+.placeholder-wave {
+
+    font-size: 50px;
+
+    text-align: center;
+
+    margin-bottom: 10px;
+}
+
+
+.placeholder-title {
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    text-align: center;
+
+    color: #5c909d;
+
+    letter-spacing: 0.5px;
+}
+
+
+.placeholder-normal {
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 13px;
+
+    text-align: center;
+
+    color: #5c909d;
+}
+
+
+/* ==========================================================
+   INFORMAÇÕES
+   ========================================================== */
+
+.info-box {
+
+    background: rgba(8, 61, 76, 0.65);
+
+    border-left: 3px solid #08a7d1;
+
+    border-radius: 6px;
+
+    padding: 9px 12px;
+
+    margin-top: 8px;
+}
+
+
+.info-name {
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    color: #65b8c9;
+}
+
+
+.info-value {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #f5f3e9;
+
+    margin-top: 2px;
 }
 
 </style>
@@ -788,20 +733,22 @@ else:
 
 with col_centro:
 
+    # Aumentada e mais larga
+
     if volume is None:
 
-        board_height = 500
+        board_height = 520
 
-        board_width = 100
+        board_width = 115
 
     else:
 
         board_height = int(
             max(
-                450,
+                470,
                 min(
-                    560,
-                    450 + volume * 2
+                    580,
+                    470 + volume * 2
                 )
             )
         )
@@ -809,10 +756,10 @@ with col_centro:
 
         board_width = int(
             max(
-                85,
+                100,
                 min(
-                    145,
-                    78 + volume * 1.25
+                    165,
+                    90 + volume * 1.35
                 )
             )
         )
@@ -826,6 +773,10 @@ with col_centro:
 
         board_text = f"{volume:.1f} LITROS"
 
+
+    # ========================================================
+    # HTML DA PRANCHA
+    # ========================================================
 
     board_html = f"""
 <!DOCTYPE html>
@@ -873,7 +824,7 @@ body {{
 
     position: absolute;
 
-    width: 320px;
+    width: 350px;
 
     height: 590px;
 
@@ -942,10 +893,10 @@ body {{
 
         0 25px 45px rgba(0,0,0,0.5),
 
-        inset 6px 0 8px
+        inset 7px 0 9px
             rgba(255,255,255,0.7),
 
-        inset -6px 0 8px
+        inset -7px 0 9px
             rgba(0,0,0,0.12);
 
     z-index: 5;
@@ -1090,54 +1041,31 @@ with col_direita:
 
         if not calcular:
 
+            # =================================================
             # IMPORTANTE:
-            # Aqui usamos HTML somente em um único markdown.
-            # Não existem elementos Streamlit dentro do HTML.
+            # NÃO USAMOS HTML AQUI.
+            # =================================================
 
             st.markdown(
-                """
-                <div style="
-                    height:510px;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    text-align:center;
-                    color:#5c909d;
-                    font-family:'DM Sans',sans-serif;
-                    font-size:13px;
-                    line-height:1.8;
-                ">
-
-                    <div>
-
-                        <div style="
-                            font-size:50px;
-                            margin-bottom:15px;
-                        ">
-                            🌊
-                        </div>
-
-                        <div style="
-                            font-weight:800;
-                        ">
-                            AJUSTE SEU PERFIL
-                        </div>
-
-                        <div>
-                            E DESCUBRA
-                        </div>
-
-                        <div style="
-                            font-weight:800;
-                        ">
-                            SUA PRANCHA IDEAL
-                        </div>
-
-                    </div>
-
-                </div>
-                """,
+                "<div style='height:300px'></div>",
                 unsafe_allow_html=True
+            )
+
+            st.markdown(
+                "🌊",
+                unsafe_allow_html=False
+            )
+
+            st.markdown(
+                "**AJUSTE SEU PERFIL**"
+            )
+
+            st.write(
+                "E DESCUBRA"
+            )
+
+            st.markdown(
+                "**SUA PRANCHA IDEAL**"
             )
 
 
