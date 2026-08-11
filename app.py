@@ -79,9 +79,13 @@ footer {
 
 .surf-title {
     font-family: 'Anton', sans-serif;
+
     font-size: clamp(60px, 7vw, 92px);
+
     letter-spacing: 4px;
+
     line-height: 0.85;
+
     color: #f5f3e9;
 
     text-shadow:
@@ -92,18 +96,23 @@ footer {
 
 .surf-subtitle {
     font-family: 'DM Sans', sans-serif;
+
     font-size: 15px;
+
     font-weight: 800;
+
     letter-spacing: 4px;
+
     color: #16b4dc;
 
     margin-top: 10px;
+
     margin-bottom: 35px;
 }
 
 
 /* ==========================================================
-   CONTAINERS DO STREAMLIT
+   CAIXAS
    ========================================================== */
 
 div[data-testid="stVerticalBlockBorderWrapper"] {
@@ -127,13 +136,16 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
 
 
 /* ==========================================================
-   TÍTULOS DAS CAIXAS
+   TÍTULOS DOS PAINÉIS
    ========================================================== */
 
 .panel-title {
     font-family: 'Bebas Neue', sans-serif;
+
     font-size: 34px;
+
     letter-spacing: 2px;
+
     color: #f5f3e9;
 
     margin-bottom: 15px;
@@ -145,6 +157,7 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
    ========================================================== */
 
 .question-label {
+
     font-family: 'DM Sans', sans-serif;
 
     font-size: 13px;
@@ -162,6 +175,7 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
 
 
 .question-help {
+
     font-family: 'DM Sans', sans-serif;
 
     font-size: 10px;
@@ -179,7 +193,9 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
    ========================================================== */
 
 div[data-testid="stSlider"] {
+
     margin-top: -5px !important;
+
     margin-bottom: 7px !important;
 }
 
@@ -195,7 +211,7 @@ div[data-testid="stSlider"]
 }
 
 
-/* preenchimento */
+/* parte preenchida */
 
 div[data-testid="stSlider"]
 [data-baseweb="slider"]
@@ -433,7 +449,9 @@ div[data-testid="stButton"] > button:hover {
 
 st.markdown(
     """
-    <div class="surf-title">SURFBOARDS</div>
+    <div class="surf-title">
+        SURFBOARDS
+    </div>
 
     <div class="surf-subtitle">
         FIND YOUR VOLUME.
@@ -454,14 +472,10 @@ col_esquerda, col_centro, col_direita = st.columns(
 
 
 # ============================================================
-# ESQUERDA — PERFIL
+# PERFIL
 # ============================================================
 
 with col_esquerda:
-
-    # IMPORTANTE:
-    # Agora a caixa inteira é um container real do Streamlit.
-    # Nenhum widget fica dentro de HTML.
 
     with st.container(border=True):
 
@@ -521,9 +535,11 @@ with col_esquerda:
         )
 
         st.markdown(
-            '<div class="question-help">'
-            '1 = INICIANTE &nbsp; • &nbsp; 5 = PRO'
-            '</div>',
+            """
+            <div class="question-help">
+                1 = INICIANTE &nbsp; • &nbsp; 5 = PRO
+            </div>
+            """,
             unsafe_allow_html=True
         )
 
@@ -543,9 +559,11 @@ with col_esquerda:
         # ----------------------------------------------------
 
         st.markdown(
-            '<div class="question-label">'
-            'QUANTAS VEZES VOCÊ SURFA POR MÊS?'
-            '</div>',
+            """
+            <div class="question-label">
+                QUANTAS VEZES VOCÊ SURFA POR MÊS?
+            </div>
+            """,
             unsafe_allow_html=True
         )
 
@@ -565,9 +583,11 @@ with col_esquerda:
         # ----------------------------------------------------
 
         st.markdown(
-            '<div class="question-label">'
-            'VOCÊ JÁ SURFOU?'
-            '</div>',
+            """
+            <div class="question-label">
+                VOCÊ JÁ SURFOU?
+            </div>
+            """,
             unsafe_allow_html=True
         )
 
@@ -583,7 +603,7 @@ with col_esquerda:
 
 
         # ----------------------------------------------------
-        # CALCULAR
+        # BOTÃO
         # ----------------------------------------------------
 
         calcular = st.button(
@@ -598,6 +618,10 @@ with col_esquerda:
 
 if calcular:
 
+    # --------------------------------------------------------
+    # PESSOA QUE NUNCA SURFOU
+    # --------------------------------------------------------
+
     if ja_surfou == "NÃO":
 
         volume = 100
@@ -611,22 +635,33 @@ if calcular:
             "e facilita o aprendizado."
         )
 
+
+    # --------------------------------------------------------
+    # PESSOA QUE JÁ SURFOU
+    # --------------------------------------------------------
+
     else:
 
-        # ====================================================
-        # FÓRMULA ORIGINAL
-        # ====================================================
-
         coeficientes = {
+
             1: 0.65,
+
             2: 0.50,
+
             3: 0.42,
+
             4: 0.36,
+
             5: 0.32
         }
 
+
         cf = coeficientes[nivel]
 
+
+        # ----------------------------------------------------
+        # FREQUÊNCIA
+        # ----------------------------------------------------
 
         if frequencia >= 5:
 
@@ -641,12 +676,16 @@ if calcular:
             multiplicador = 0
 
 
+        # ----------------------------------------------------
+        # FÓRMULA
+        # ----------------------------------------------------
+
         volume = peso * cf + multiplicador
 
 
-        # ====================================================
-        # RECOMENDAÇÃO
-        # ====================================================
+        # ----------------------------------------------------
+        # TIPO DE PRANCHA
+        # ----------------------------------------------------
 
         if nivel == 1:
 
@@ -657,6 +696,7 @@ if calcular:
                 "a remada, o equilíbrio e a evolução."
             )
 
+
         elif nivel == 2:
 
             tipo_prancha = "FUNBOARD"
@@ -665,6 +705,7 @@ if calcular:
                 "Um ótimo equilíbrio entre estabilidade, "
                 "velocidade e facilidade de uso."
             )
+
 
         elif nivel == 3:
 
@@ -675,6 +716,7 @@ if calcular:
                 "boa base e quer começar a buscar mais performance."
             )
 
+
         elif nivel == 4:
 
             tipo_prancha = "SHORTBOARD"
@@ -684,6 +726,7 @@ if calcular:
                 "para quem já possui bastante controle."
             )
 
+
         else:
 
             tipo_prancha = "PERFORMANCE"
@@ -692,6 +735,7 @@ if calcular:
                 "Menor volume e maior responsividade para "
                 "surfistas experientes buscando performance."
             )
+
 
 else:
 
@@ -703,24 +747,27 @@ else:
 
 
 # ============================================================
-# CENTRO — PRANCHA
+# PRANCHA CENTRAL
 # ============================================================
 
 with col_centro:
 
     # --------------------------------------------------------
-    # DIMENSÕES DINÂMICAS
+    # TAMANHO INICIAL
     # --------------------------------------------------------
 
     if volume is None:
 
         board_height = 440
+
         board_width = 82
 
-    else:
 
-        # Quanto maior o volume, maior a prancha visualmente.
-        # Limitamos os valores para não ficar exagerado.
+    # --------------------------------------------------------
+    # TAMANHO DINÂMICO
+    # --------------------------------------------------------
+
+    else:
 
         board_height = int(
             max(
@@ -732,6 +779,7 @@ with col_centro:
             )
         )
 
+
         board_width = int(
             max(
                 70,
@@ -740,265 +788,285 @@ with col_centro:
                     65 + volume * 1.1
                 )
             )
+        )
 
 
     # --------------------------------------------------------
-    # PRANCHA SVG
+    # VOLUME DA PRANCHA
+    # --------------------------------------------------------
+
+    if volume is not None:
+
+        volume_text = f"{volume:.1f}L"
+
+    else:
+
+        volume_text = ""
+
+
+    # --------------------------------------------------------
+    # HTML DA PRANCHA
     # --------------------------------------------------------
 
     board_html = f"""
-    <html>
+<!DOCTYPE html>
 
-    <head>
+<html>
 
-    <style>
+<head>
 
-    html, body {{
+<style>
 
-        margin: 0;
+html,
+body {{
 
-        padding: 0;
+    margin: 0;
 
-        width: 100%;
+    padding: 0;
 
-        height: 100%;
+    width: 100%;
 
-        overflow: hidden;
+    height: 100%;
 
-        background: transparent;
-    }}
+    overflow: hidden;
 
+    background: transparent;
+}}
 
-    .scene {{
 
-        width: 100%;
+.scene {{
 
-        height: 600px;
+    width: 100%;
 
-        display: flex;
+    height: 600px;
 
-        justify-content: center;
+    display: flex;
 
-        align-items: center;
+    justify-content: center;
 
-        position: relative;
-    }}
+    align-items: center;
 
+    position: relative;
+}}
 
-    .glow {{
 
-        position: absolute;
+.glow {{
 
-        width: 280px;
+    position: absolute;
 
-        height: 580px;
+    width: 280px;
 
-        border-radius: 50%;
+    height: 580px;
 
-        background:
-            radial-gradient(
-                ellipse,
-                rgba(0,180,220,0.18),
-                transparent 70%
-            );
+    border-radius: 50%;
 
-        filter: blur(20px);
-    }}
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(0,180,220,0.18),
+            transparent 70%
+        );
 
+    filter: blur(20px);
+}}
 
-    .wave {{
 
-        position: absolute;
+.wave {{
 
-        width: 100%;
+    position: absolute;
 
-        height: 100px;
+    width: 100%;
 
-        bottom: 40px;
+    height: 100px;
 
-        opacity: 0.16;
+    bottom: 40px;
 
-        background:
-            repeating-linear-gradient(
-                -12deg,
-                transparent 0px,
-                transparent 28px,
-                #078baa 29px,
-                #078baa 48px,
-                transparent 49px,
-                transparent 75px
-            );
-    }}
+    opacity: 0.16;
 
+    background:
+        repeating-linear-gradient(
+            -12deg,
+            transparent 0px,
+            transparent 28px,
+            #078baa 29px,
+            #078baa 48px,
+            transparent 49px,
+            transparent 75px
+        );
+}}
 
-    .board {{
 
-        position: relative;
+.board {{
 
-        width: {board_width}px;
+    position: relative;
 
-        height: {board_height}px;
+    width: {board_width}px;
 
-        border-radius:
-            55% 55% 48% 48%
-            /
-            13% 13% 10% 10%;
+    height: {board_height}px;
 
-        background:
-            linear-gradient(
-                90deg,
-                #cfcbbd 0%,
-                #efede1 13%,
-                #fffef5 50%,
-                #efede1 87%,
-                #cfcbbd 100%
-            );
+    border-radius:
+        55% 55% 48% 48%
+        /
+        13% 13% 10% 10%;
 
-        box-shadow:
+    background:
+        linear-gradient(
+            90deg,
+            #cfcbbd 0%,
+            #efede1 13%,
+            #fffef5 50%,
+            #efede1 87%,
+            #cfcbbd 100%
+        );
 
-            0 25px 45px rgba(0,0,0,0.5),
+    box-shadow:
 
-            inset 6px 0 8px
-                rgba(255,255,255,0.7),
+        0 25px 45px rgba(0,0,0,0.5),
 
-            inset -6px 0 8px
-                rgba(0,0,0,0.12);
+        inset 6px 0 8px
+            rgba(255,255,255,0.7),
 
-        z-index: 5;
+        inset -6px 0 8px
+            rgba(0,0,0,0.12);
 
-        transition:
-            width 0.5s ease,
-            height 0.5s ease;
-    }}
+    z-index: 5;
 
+    transition:
+        width 0.5s ease,
+        height 0.5s ease;
+}}
 
-    .stringer {{
 
-        position: absolute;
+.stringer {{
 
-        width: 3px;
+    position: absolute;
 
-        height: 90%;
+    width: 3px;
 
-        top: 5%;
+    height: 90%;
 
-        left: 50%;
+    top: 5%;
 
-        transform: translateX(-50%);
+    left: 50%;
 
-        background: #a8b2b1;
+    transform: translateX(-50%);
 
-        opacity: 0.75;
-    }}
+    background: #a8b2b1;
 
+    opacity: 0.75;
+}}
 
-    .logo {{
 
-        position: absolute;
+.logo {{
 
-        top: 45%;
+    position: absolute;
 
-        left: 50%;
+    top: 45%;
 
-        transform:
-            translate(-50%, -50%)
-            rotate(-90deg);
+    left: 50%;
 
-        font-family: Arial Black;
+    transform:
+        translate(-50%, -50%)
+        rotate(-90deg);
 
-        font-size: 25px;
+    font-family: Arial Black;
 
-        letter-spacing: 3px;
+    font-size: 25px;
 
-        color: #078eaf;
+    letter-spacing: 3px;
 
-        white-space: nowrap;
-    }}
+    color: #078eaf;
 
+    white-space: nowrap;
+}}
 
-    .fin {{
 
-        position: absolute;
+.volume {{
 
-        bottom: -31px;
+    position: absolute;
 
-        left: 50%;
+    left: 50%;
 
-        transform: translateX(-50%);
+    top: 57%;
 
-        width: 32px;
+    transform:
+        translate(-50%, -50%)
+        rotate(-90deg);
 
-        height: 47px;
+    font-family: Arial Black;
 
-        background: #102a33;
+    font-size: 15px;
 
-        clip-path:
-            polygon(
-                50% 100%,
-                0 0,
-                100% 0
-            );
-    }}
+    color: rgba(7,142,175,0.7);
 
+    white-space: nowrap;
+}}
 
-    .volume {{
 
-        position: absolute;
+.fin {{
 
-        left: 50%;
+    position: absolute;
 
-        top: 50%;
+    bottom: -31px;
 
-        transform:
-            translate(-50%, -50%)
-            rotate(-90deg);
+    left: 50%;
 
-        font-family: Arial Black;
+    transform: translateX(-50%);
 
-        font-size: 15px;
+    width: 32px;
 
-        color: rgba(7,142,175,0.7);
+    height: 47px;
 
-        white-space: nowrap;
-    }}
+    background: #102a33;
 
-    </style>
+    clip-path:
+        polygon(
+            50% 100%,
+            0 0,
+            100% 0
+        );
+}}
 
-    </head>
+</style>
 
-    <body>
+</head>
 
-        <div class="scene">
 
-            <div class="glow"></div>
+<body>
 
-            <div class="wave"></div>
+<div class="scene">
 
-            <div class="board">
+    <div class="glow"></div>
 
-                <div class="stringer"></div>
+    <div class="wave"></div>
 
-                <div class="logo">
-                    SURF
-                </div>
+    <div class="board">
 
-                {
-                    f'<div class="volume">{volume:.1f}L</div>'
-                    if volume is not None
-                    else ''
-                }
+        <div class="stringer"></div>
 
-                <div class="fin"></div>
-
-            </div>
-
+        <div class="logo">
+            SURF
         </div>
 
-    </body>
+        <div class="volume">
+            {volume_text}
+        </div>
 
-    </html>
-    """
+        <div class="fin"></div>
 
+    </div>
+
+</div>
+
+</body>
+
+</html>
+"""
+
+
+    # --------------------------------------------------------
+    # MOSTRAR PRANCHA
+    # --------------------------------------------------------
 
     components.html(
         board_html,
@@ -1008,14 +1076,10 @@ with col_centro:
 
 
 # ============================================================
-# DIREITA — RECOMENDAÇÃO
+# RECOMENDAÇÃO
 # ============================================================
 
 with col_direita:
-
-    # ========================================================
-    # CAIXA REAL DO STREAMLIT
-    # ========================================================
 
     with st.container(border=True):
 
@@ -1026,7 +1090,7 @@ with col_direita:
 
 
         # ----------------------------------------------------
-        # ANTES DE CALCULAR
+        # ANTES DO CÁLCULO
         # ----------------------------------------------------
 
         if not calcular:
@@ -1050,7 +1114,9 @@ with col_direita:
 
                         <br>
 
-                        E DESCUBRA<br>
+                        E DESCUBRA
+
+                        <br>
 
                         <strong>
                             SUA PRANCHA IDEAL
@@ -1065,21 +1131,27 @@ with col_direita:
 
 
         # ----------------------------------------------------
-        # RESULTADO
+        # DEPOIS DO CÁLCULO
         # ----------------------------------------------------
 
         else:
 
             st.markdown(
-                '<div class="rec-label">'
-                'SUA PRANCHA IDEAL'
-                '</div>',
+                """
+                <div class="rec-label">
+                    SUA PRANCHA IDEAL
+                </div>
+                """,
                 unsafe_allow_html=True
             )
 
 
             st.markdown(
-                f'<div class="rec-board">{tipo_prancha}</div>',
+                f"""
+                <div class="rec-board">
+                    {tipo_prancha}
+                </div>
+                """,
                 unsafe_allow_html=True
             )
 
@@ -1091,25 +1163,31 @@ with col_direita:
 
 
             st.markdown(
-                '<div class="rec-label">'
-                'VOLUME RECOMENDADO'
-                '</div>',
+                """
+                <div class="rec-label">
+                    VOLUME RECOMENDADO
+                </div>
+                """,
                 unsafe_allow_html=True
             )
 
 
             st.markdown(
-                f'<div class="rec-volume">'
-                f'{volume:.1f}L'
-                f'</div>',
+                f"""
+                <div class="rec-volume">
+                    {volume:.1f}L
+                </div>
+                """,
                 unsafe_allow_html=True
             )
 
 
             st.markdown(
-                '<div class="rec-description">'
-                f'{descricao}'
-                '</div>',
+                f"""
+                <div class="rec-description">
+                    {descricao}
+                </div>
+                """,
                 unsafe_allow_html=True
             )
 
