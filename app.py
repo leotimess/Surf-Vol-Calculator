@@ -79,13 +79,9 @@ footer {
 
 .surf-title {
     font-family: 'Anton', sans-serif;
-
     font-size: clamp(60px, 7vw, 92px);
-
     letter-spacing: 4px;
-
     line-height: 0.85;
-
     color: #f5f3e9;
 
     text-shadow:
@@ -96,17 +92,12 @@ footer {
 
 .surf-subtitle {
     font-family: 'DM Sans', sans-serif;
-
     font-size: 15px;
-
     font-weight: 800;
-
     letter-spacing: 4px;
-
     color: #16b4dc;
 
     margin-top: 10px;
-
     margin-bottom: 35px;
 }
 
@@ -136,18 +127,14 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
 
 
 /* ==========================================================
-   TÍTULOS DOS PAINÉIS
+   TÍTULOS
    ========================================================== */
 
 .panel-title {
     font-family: 'Bebas Neue', sans-serif;
-
     font-size: 34px;
-
     letter-spacing: 2px;
-
     color: #f5f3e9;
-
     margin-bottom: 15px;
 }
 
@@ -433,6 +420,134 @@ div[data-testid="stButton"] > button:hover {
     line-height: 1.8;
 }
 
+
+/* ==========================================================
+   RECOMENDAÇÃO NATIVA
+   ========================================================== */
+
+.recommendation-label {
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: #19b8df;
+
+    margin-top: 8px;
+
+    margin-bottom: 5px;
+}
+
+
+.recommendation-board {
+
+    font-family: 'Bebas Neue', sans-serif;
+
+    font-size: 43px;
+
+    letter-spacing: 2px;
+
+    color: #f5f3e9;
+
+    line-height: 1;
+
+    margin-bottom: 18px;
+}
+
+
+.recommendation-volume-label {
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: #19b8df;
+
+    margin-bottom: 3px;
+}
+
+
+.recommendation-volume {
+
+    font-family: 'Anton', sans-serif;
+
+    font-size: 72px;
+
+    color: #12b9e2;
+
+    line-height: 1;
+
+    margin-bottom: 20px;
+}
+
+
+.recommendation-description {
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    color: #c6dfe5;
+
+    margin-bottom: 20px;
+}
+
+
+.recommendation-divider {
+
+    width: 100%;
+
+    height: 1px;
+
+    background: rgba(255,255,255,0.08);
+
+    margin: 18px 0;
+}
+
+
+/* ==========================================================
+   PRANCHA
+   ========================================================== */
+
+.board-text {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-90deg);
+
+    font-family: 'Anton', Arial Black, sans-serif;
+
+    font-size: 26px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    color: #078eaf;
+
+    white-space: nowrap;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -477,6 +592,7 @@ with col_esquerda:
             '<div class="panel-title">SEU PERFIL</div>',
             unsafe_allow_html=True
         )
+
 
         st.markdown(
             '<div class="question-label">SEU PESO</div>',
@@ -691,28 +807,31 @@ with col_centro:
 
     if volume is None:
 
-        board_height = 440
+        board_height = 500
 
-        board_width = 82
+        board_width = 100
 
     else:
 
+        # Aumentei a altura e a largura da prancha.
+
         board_height = int(
             max(
-                390,
+                450,
                 min(
-                    510,
-                    390 + volume * 2
+                    560,
+                    450 + volume * 2
                 )
             )
         )
 
+
         board_width = int(
             max(
-                70,
+                85,
                 min(
-                    125,
-                    65 + volume * 1.1
+                    145,
+                    78 + volume * 1.25
                 )
             )
         )
@@ -732,7 +851,7 @@ with col_centro:
 
 
     # --------------------------------------------------------
-    # PRANCHA
+    # HTML DA PRANCHA
     # --------------------------------------------------------
 
     board_html = f"""
@@ -781,9 +900,9 @@ body {{
 
     position: absolute;
 
-    width: 280px;
+    width: 320px;
 
-    height: 580px;
+    height: 590px;
 
     border-radius: 50%;
 
@@ -898,7 +1017,7 @@ body {{
 
     font-family: 'Anton', Arial Black, sans-serif;
 
-    font-size: 26px;
+    font-size: 29px;
 
     font-weight: 900;
 
@@ -909,8 +1028,6 @@ body {{
     white-space: nowrap;
 
     text-align: center;
-
-    max-width: 85%;
 
     z-index: 10;
 }}
@@ -926,9 +1043,9 @@ body {{
 
     transform: translateX(-50%);
 
-    width: 32px;
+    width: 34px;
 
-    height: 47px;
+    height: 50px;
 
     background: #102a33;
 
@@ -1046,27 +1163,27 @@ with col_direita:
             # ------------------------------------------------
 
             st.markdown(
-                '<div class="rec-label">SUA PRANCHA IDEAL</div>',
+                '<div class="recommendation-label">'
+                'SUA PRANCHA IDEAL'
+                '</div>',
                 unsafe_allow_html=True
             )
 
 
             # ------------------------------------------------
-            # TIPO DA PRANCHA
+            # PRANCHA
             # ------------------------------------------------
 
             st.markdown(
-                f'<div class="rec-board">{tipo_prancha}</div>',
+                f'<div class="recommendation-board">'
+                f'{tipo_prancha}'
+                f'</div>',
                 unsafe_allow_html=True
             )
 
 
-            # ------------------------------------------------
-            # LINHA
-            # ------------------------------------------------
-
             st.markdown(
-                '<div class="rec-line"></div>',
+                '<div class="recommendation-divider"></div>',
                 unsafe_allow_html=True
             )
 
@@ -1076,13 +1193,17 @@ with col_direita:
             # ------------------------------------------------
 
             st.markdown(
-                '<div class="rec-label">VOLUME RECOMENDADO</div>',
+                '<div class="recommendation-volume-label">'
+                'VOLUME RECOMENDADO'
+                '</div>',
                 unsafe_allow_html=True
             )
 
 
             st.markdown(
-                f'<div class="rec-volume">{volume:.1f}L</div>',
+                f'<div class="recommendation-volume">'
+                f'{volume:.1f}L'
+                f'</div>',
                 unsafe_allow_html=True
             )
 
@@ -1092,32 +1213,28 @@ with col_direita:
             # ------------------------------------------------
 
             st.markdown(
-                f'<div class="rec-description">{descricao}</div>',
+                f'<div class="recommendation-description">'
+                f'{descricao}'
+                f'</div>',
                 unsafe_allow_html=True
             )
 
-
-            # ------------------------------------------------
-            # LINHA
-            # ------------------------------------------------
 
             st.markdown(
-                '<div class="rec-line"></div>',
+                '<div class="recommendation-divider"></div>',
                 unsafe_allow_html=True
             )
 
 
             # ------------------------------------------------
-            # PESO
+            # INFORMAÇÕES
             # ------------------------------------------------
 
             st.markdown(
                 f"""
                 <div class="info-box">
 
-                    <div class="info-name">
-                        PESO
-                    </div>
+                    <div class="info-name">PESO</div>
 
                     <div class="info-value">
                         {peso} kg
@@ -1129,17 +1246,11 @@ with col_direita:
             )
 
 
-            # ------------------------------------------------
-            # ALTURA
-            # ------------------------------------------------
-
             st.markdown(
                 f"""
                 <div class="info-box">
 
-                    <div class="info-name">
-                        ALTURA
-                    </div>
+                    <div class="info-name">ALTURA</div>
 
                     <div class="info-value">
                         {altura} cm
@@ -1151,17 +1262,11 @@ with col_direita:
             )
 
 
-            # ------------------------------------------------
-            # NÍVEL
-            # ------------------------------------------------
-
             st.markdown(
                 f"""
                 <div class="info-box">
 
-                    <div class="info-name">
-                        NÍVEL
-                    </div>
+                    <div class="info-name">NÍVEL</div>
 
                     <div class="info-value">
                         {nivel}/5
@@ -1172,10 +1277,6 @@ with col_direita:
                 unsafe_allow_html=True
             )
 
-
-            # ------------------------------------------------
-            # FREQUÊNCIA
-            # ------------------------------------------------
 
             st.markdown(
                 f"""
