@@ -9,8 +9,7 @@ import streamlit.components.v1 as components
 st.set_page_config(
     page_title="SURFBOARDS",
     page_icon="🏄",
-    layout="wide",
-    initial_sidebar_state="collapsed"
+    layout="wide"
 )
 
 
@@ -21,10 +20,6 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-/* ==========================================================
-   FONTES
-   ========================================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap');
 
 
@@ -33,53 +28,47 @@ st.markdown("""
    ========================================================== */
 
 .stApp {
-
     background:
         radial-gradient(
             circle at 50% 35%,
-            rgba(0, 170, 215, 0.10),
+            rgba(0, 170, 215, 0.12),
             transparent 38%
         ),
         linear-gradient(
             180deg,
             #03151e 0%,
-            #061d28 48%,
+            #061d28 50%,
             #063d4f 100%
         );
 
-    color: #f4f4ee;
-
-    font-family: 'DM Sans', sans-serif;
+    color: #f5f3e9;
 }
 
 
 /* ==========================================================
-   ESPAÇAMENTO PRINCIPAL
+   ÁREA PRINCIPAL
    ========================================================== */
 
 .block-container {
-
     max-width: 1450px !important;
-
     padding-top: 35px !important;
-
     padding-bottom: 30px !important;
 }
 
 
 /* ==========================================================
-   ESCONDER MENU / FOOTER
+   ESCONDER ELEMENTOS STREAMLIT
    ========================================================== */
 
 #MainMenu {
     visibility: hidden;
 }
 
-footer {
+header {
     visibility: hidden;
 }
 
-header {
+footer {
     visibility: hidden;
 }
 
@@ -89,131 +78,99 @@ header {
    ========================================================== */
 
 .surf-title {
-
     font-family: 'Anton', sans-serif;
-
-    font-size: clamp(60px, 7vw, 95px);
-
+    font-size: clamp(60px, 7vw, 92px);
     letter-spacing: 4px;
-
     line-height: 0.85;
-
     color: #f5f3e9;
 
     text-shadow:
         0 4px 0 #087c9e,
         0 8px 25px rgba(0,0,0,0.35);
-
-    margin: 0;
 }
 
 
 .surf-subtitle {
-
     font-family: 'DM Sans', sans-serif;
-
     font-size: 15px;
-
     font-weight: 800;
-
     letter-spacing: 4px;
-
     color: #16b4dc;
 
     margin-top: 10px;
-
     margin-bottom: 35px;
 }
 
 
 /* ==========================================================
-   COLUNAS / PAINÉIS
+   CONTAINERS DO STREAMLIT
    ========================================================== */
 
-/*
-   O Streamlit cria as colunas como elementos próprios.
-   Aqui estilizamos os elementos internos sem colocar
-   HTML ao redor dos widgets.
-*/
+div[data-testid="stVerticalBlockBorderWrapper"] {
 
-[data-testid="column"] {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7, 42, 54, 0.94),
+            rgba(3, 25, 34, 0.94)
+        ) !important;
 
-    border-radius: 18px;
+    border: 1px solid rgba(16, 164, 201, 0.35) !important;
 
-}
-
-
-/* ==========================================================
-   PAINEL ESQUERDO
-   ========================================================== */
-
-.profile-panel {
-
-    background: rgba(5, 32, 43, 0.88);
-
-    border: 1px solid rgba(18, 164, 202, 0.35);
-
-    border-radius: 18px;
-
-    padding: 25px;
-
-    min-height: 625px;
+    border-radius: 18px !important;
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,0.20);
+        0 20px 60px rgba(0,0,0,0.22) !important;
 
+    padding: 25px !important;
 }
 
 
 /* ==========================================================
-   TÍTULO DOS PAINÉIS
+   TÍTULOS DAS CAIXAS
    ========================================================== */
 
 .panel-title {
-
     font-family: 'Bebas Neue', sans-serif;
-
     font-size: 34px;
-
     letter-spacing: 2px;
-
     color: #f5f3e9;
 
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 
 /* ==========================================================
-   LABELS
+   PERGUNTAS
    ========================================================== */
 
-.question {
-
+.question-label {
     font-family: 'DM Sans', sans-serif;
 
     font-size: 13px;
 
     font-weight: 800;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 1.3px;
 
-    color: #b9d5dc;
+    color: #c6dfe5;
 
-    text-transform: uppercase;
+    margin-top: 12px;
 
-    margin-top: 17px;
-
-    margin-bottom: 3px;
+    margin-bottom: 0;
 }
 
 
-.helper {
+.question-help {
+    font-family: 'DM Sans', sans-serif;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    color: #5faabb;
+    font-weight: 600;
 
-    margin-bottom: 3px;
+    color: #5ea9b9;
+
+    margin-top: 2px;
 }
 
 
@@ -222,52 +179,50 @@ header {
    ========================================================== */
 
 div[data-testid="stSlider"] {
-
-    margin-top: -4px;
-
-    margin-bottom: 5px;
+    margin-top: -5px !important;
+    margin-bottom: 7px !important;
 }
 
 
 /* trilho */
 
-div[data-testid="stSlider"] [data-baseweb="slider"] > div > div {
+div[data-testid="stSlider"]
+[data-baseweb="slider"]
+> div
+> div {
 
-    background-color: #174d5e !important;
+    background-color: #174e5f !important;
 }
 
 
-/* parte preenchida */
+/* preenchimento */
 
-div[data-testid="stSlider"] [data-baseweb="slider"] > div > div > div {
+div[data-testid="stSlider"]
+[data-baseweb="slider"]
+> div
+> div
+> div {
 
-    background-color: #08a5d0 !important;
+    background-color: #08a7d2 !important;
 }
 
 
 /* bolinha */
 
-div[data-testid="stSlider"] [role="slider"] {
+div[data-testid="stSlider"]
+[role="slider"] {
 
-    width: 19px !important;
+    width: 20px !important;
 
-    height: 19px !important;
+    height: 20px !important;
 
-    background: #f5f3e9 !important;
+    background-color: #f5f3e9 !important;
 
-    border: 3px solid #08a5d0 !important;
+    border: 3px solid #08a7d2 !important;
 
     box-shadow:
-        0 0 0 4px rgba(8,165,208,0.12),
-        0 3px 10px rgba(0,0,0,0.35) !important;
-}
-
-
-/* valor */
-
-div[data-testid="stSlider"] div[data-testid="stWidgetLabel"] {
-
-    color: transparent !important;
+        0 0 0 4px rgba(8,167,210,0.12),
+        0 3px 10px rgba(0,0,0,0.4) !important;
 }
 
 
@@ -283,63 +238,19 @@ div[data-testid="stRadio"] label {
 }
 
 
-div[data-testid="stRadio"] [data-baseweb="radio"] {
-
-    background: #0d3543;
-
-    border-radius: 8px;
-
-    padding: 8px 15px;
-}
-
-
 /* ==========================================================
-   BOTÕES
+   BOTÃO
    ========================================================== */
 
-.stButton > button {
+div[data-testid="stButton"] > button {
 
     width: 100%;
 
-    min-height: 54px;
+    min-height: 58px;
 
     border-radius: 10px;
 
-    border: 1px solid rgba(20,174,214,0.45);
-
-    background: #0c3543;
-
-    color: #edf8fa;
-
-    font-family: 'DM Sans', sans-serif;
-
-    font-size: 14px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-
-    transition: all 0.15s ease;
-}
-
-
-.stButton > button:hover {
-
-    background: #078eaf;
-
-    border-color: #18c1e7;
-
-    color: white;
-
-    transform: translateY(-2px);
-}
-
-
-/* ==========================================================
-   BOTÃO PRINCIPAL
-   ========================================================== */
-
-.calculate-button .stButton > button {
+    border: 1px solid #12a9d2;
 
     background:
         linear-gradient(
@@ -348,59 +259,28 @@ div[data-testid="stRadio"] [data-baseweb="radio"] {
             #087fa4
         );
 
-    border: none;
-
-    min-height: 58px;
+    color: white;
 
     font-family: 'Bebas Neue', sans-serif;
 
-    font-size: 22px;
+    font-size: 23px;
 
     letter-spacing: 2px;
 
-    box-shadow:
-        0 10px 30px rgba(0,150,200,0.18);
+    transition: 0.2s;
 }
 
 
-.calculate-button .stButton > button:hover {
+div[data-testid="stButton"] > button:hover {
 
     background:
         linear-gradient(
             135deg,
-            #13b9e2,
-            #0791b9
+            #14bce7,
+            #0792b9
         );
 
-}
-
-
-/* ==========================================================
-   ÁREA CENTRAL
-   ========================================================== */
-
-.board-container {
-
-    height: 625px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 18px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(0,166,207,0.13),
-            transparent 60%
-        );
+    transform: translateY(-2px);
 }
 
 
@@ -408,41 +288,23 @@ div[data-testid="stRadio"] [data-baseweb="radio"] {
    RECOMENDAÇÃO
    ========================================================== */
 
-.recommendation-panel {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(8,53,67,0.94),
-            rgba(4,29,40,0.94)
-        );
-
-    border: 1px solid rgba(18,164,202,0.38);
-
-    border-radius: 18px;
-
-    min-height: 625px;
-
-    padding: 30px;
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.20);
-}
-
-
 .rec-label {
 
-    font-size: 11px;
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: 10px;
 
     font-weight: 800;
 
     letter-spacing: 2px;
 
-    color: #19b7df;
+    color: #19b8df;
+
+    margin-top: 8px;
 }
 
 
-.rec-title {
+.rec-board {
 
     font-family: 'Bebas Neue', sans-serif;
 
@@ -454,7 +316,7 @@ div[data-testid="stRadio"] [data-baseweb="radio"] {
 
     line-height: 1;
 
-    margin-top: 8px;
+    margin-top: 5px;
 }
 
 
@@ -464,35 +326,25 @@ div[data-testid="stRadio"] [data-baseweb="radio"] {
 
     font-size: 72px;
 
-    color: #16b9e2;
+    color: #12b9e2;
 
     line-height: 1;
 
-    margin-top: 22px;
-}
-
-
-.rec-unit {
-
-    color: #9bcbd5;
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    letter-spacing: 2px;
+    margin-top: 12px;
 }
 
 
 .rec-description {
 
-    color: #c5dfe5;
+    font-family: 'DM Sans', sans-serif;
 
-    font-size: 14px;
+    font-size: 13px;
 
-    line-height: 1.65;
+    line-height: 1.6;
 
-    margin-top: 25px;
+    color: #c6dfe5;
+
+    margin-top: 20px;
 }
 
 
@@ -500,29 +352,35 @@ div[data-testid="stRadio"] [data-baseweb="radio"] {
 
     height: 1px;
 
+    width: 100%;
+
     background: rgba(255,255,255,0.08);
 
-    margin: 25px 0;
+    margin: 20px 0;
 }
 
 
-.info {
+/* ==========================================================
+   INFORMAÇÕES
+   ========================================================== */
 
-    background: rgba(10,60,75,0.55);
+.info-box {
 
-    border-left: 3px solid #08a5d0;
+    background: rgba(8, 61, 76, 0.65);
 
-    border-radius: 7px;
+    border-left: 3px solid #08a7d1;
 
-    padding: 12px 15px;
+    border-radius: 6px;
 
-    margin-top: 10px;
+    padding: 9px 12px;
+
+    margin-top: 8px;
 }
 
 
-.info-label {
+.info-name {
 
-    font-size: 10px;
+    font-size: 9px;
 
     font-weight: 800;
 
@@ -534,19 +392,19 @@ div[data-testid="stRadio"] [data-baseweb="radio"] {
 
 .info-value {
 
-    font-size: 14px;
+    font-size: 13px;
 
     font-weight: 700;
 
-    color: white;
+    color: #f5f3e9;
 
-    margin-top: 3px;
+    margin-top: 2px;
 }
 
 
 .placeholder {
 
-    min-height: 520px;
+    height: 510px;
 
     display: flex;
 
@@ -556,11 +414,13 @@ div[data-testid="stRadio"] [data-baseweb="radio"] {
 
     text-align: center;
 
-    color: #5d929f;
+    color: #5c909d;
 
-    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
 
-    line-height: 1.7;
+    font-size: 13px;
+
+    line-height: 1.8;
 }
 
 </style>
@@ -574,439 +434,162 @@ div[data-testid="stRadio"] [data-baseweb="radio"] {
 st.markdown(
     """
     <div class="surf-title">SURFBOARDS</div>
-    <div class="surf-subtitle">FIND YOUR VOLUME.</div>
+
+    <div class="surf-subtitle">
+        FIND YOUR VOLUME.
+    </div>
     """,
     unsafe_allow_html=True
 )
 
 
 # ============================================================
-# LAYOUT
+# COLUNAS
 # ============================================================
 
-col_left, col_center, col_right = st.columns(
+col_esquerda, col_centro, col_direita = st.columns(
     [1.05, 1.35, 1.05],
     gap="large"
 )
 
 
 # ============================================================
-# PAINEL ESQUERDO
+# ESQUERDA — PERFIL
 # ============================================================
 
-with col_left:
-
-    # Caixa visual do painel
-    st.markdown(
-        """
-        <div class="profile-panel">
-            <div class="panel-title">SEU PERFIL</div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    # --------------------------------------------------------
-    # PESO
-    # --------------------------------------------------------
-
-    st.markdown(
-        '<div class="question">SEU PESO</div>',
-        unsafe_allow_html=True
-    )
-
-    peso = st.slider(
-        "Peso",
-        min_value=40,
-        max_value=150,
-        value=75,
-        step=1,
-        format="%d kg",
-        label_visibility="visible"
-    )
-
-
-    # --------------------------------------------------------
-    # ALTURA
-    # --------------------------------------------------------
-
-    st.markdown(
-        '<div class="question">SUA ALTURA</div>',
-        unsafe_allow_html=True
-    )
-
-    altura = st.slider(
-        "Altura",
-        min_value=140,
-        max_value=210,
-        value=175,
-        step=1,
-        format="%d cm",
-        label_visibility="visible"
-    )
-
-
-    # --------------------------------------------------------
-    # NÍVEL
-    # --------------------------------------------------------
-
-    st.markdown(
-        '<div class="question">NÍVEL DE SURF</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<div class="helper">1 = INICIANTE &nbsp;&nbsp; • &nbsp;&nbsp; 5 = PRO</div>',
-        unsafe_allow_html=True
-    )
-
-    nivel = st.slider(
-        "Nível",
-        min_value=1,
-        max_value=5,
-        value=2,
-        step=1,
-        format="%d",
-        label_visibility="visible"
-    )
+with col_esquerda:
+
+    # IMPORTANTE:
+    # Agora a caixa inteira é um container real do Streamlit.
+    # Nenhum widget fica dentro de HTML.
+
+    with st.container(border=True):
+
+        st.markdown(
+            '<div class="panel-title">SEU PERFIL</div>',
+            unsafe_allow_html=True
+        )
+
+
+        # ----------------------------------------------------
+        # PESO
+        # ----------------------------------------------------
+
+        st.markdown(
+            '<div class="question-label">SEU PESO</div>',
+            unsafe_allow_html=True
+        )
+
+        peso = st.slider(
+            "Peso",
+            min_value=40,
+            max_value=150,
+            value=75,
+            step=1,
+            format="%d kg",
+            label_visibility="collapsed"
+        )
+
+
+        # ----------------------------------------------------
+        # ALTURA
+        # ----------------------------------------------------
+
+        st.markdown(
+            '<div class="question-label">SUA ALTURA</div>',
+            unsafe_allow_html=True
+        )
+
+        altura = st.slider(
+            "Altura",
+            min_value=140,
+            max_value=210,
+            value=175,
+            step=1,
+            format="%d cm",
+            label_visibility="collapsed"
+        )
+
+
+        # ----------------------------------------------------
+        # NÍVEL
+        # ----------------------------------------------------
+
+        st.markdown(
+            '<div class="question-label">NÍVEL DE SURF</div>',
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            '<div class="question-help">'
+            '1 = INICIANTE &nbsp; • &nbsp; 5 = PRO'
+            '</div>',
+            unsafe_allow_html=True
+        )
+
+        nivel = st.slider(
+            "Nível",
+            min_value=1,
+            max_value=5,
+            value=2,
+            step=1,
+            format="%d",
+            label_visibility="collapsed"
+        )
+
+
+        # ----------------------------------------------------
+        # FREQUÊNCIA
+        # ----------------------------------------------------
+
+        st.markdown(
+            '<div class="question-label">'
+            'QUANTAS VEZES VOCÊ SURFA POR MÊS?'
+            '</div>',
+            unsafe_allow_html=True
+        )
+
+        frequencia = st.slider(
+            "Frequência",
+            min_value=0,
+            max_value=30,
+            value=4,
+            step=1,
+            format="%d vezes",
+            label_visibility="collapsed"
+        )
 
 
-    # --------------------------------------------------------
-    # FREQUÊNCIA
-    # --------------------------------------------------------
+        # ----------------------------------------------------
+        # EXPERIÊNCIA
+        # ----------------------------------------------------
 
-    st.markdown(
-        '<div class="question">QUANTAS VEZES VOCÊ SURFA POR MÊS?</div>',
-        unsafe_allow_html=True
-    )
+        st.markdown(
+            '<div class="question-label">'
+            'VOCÊ JÁ SURFOU?'
+            '</div>',
+            unsafe_allow_html=True
+        )
 
-    frequencia = st.slider(
-        "Frequência",
-        min_value=0,
-        max_value=30,
-        value=4,
-        step=1,
-        format="%d vezes",
-        label_visibility="visible"
-    )
+        ja_surfou = st.radio(
+            "Experiência",
+            ["SIM", "NÃO"],
+            horizontal=True,
+            label_visibility="collapsed"
+        )
 
 
-    # --------------------------------------------------------
-    # EXPERIÊNCIA
-    # --------------------------------------------------------
+        st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown(
-        '<div class="question">VOCÊ JÁ SURFOU?</div>',
-        unsafe_allow_html=True
-    )
 
-    ja_surfou = st.radio(
-        "Você já surfou?",
-        ["SIM", "NÃO"],
-        horizontal=True,
-        label_visibility="visible"
-    )
+        # ----------------------------------------------------
+        # CALCULAR
+        # ----------------------------------------------------
 
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-
-    # --------------------------------------------------------
-    # BOTÃO
-    # --------------------------------------------------------
-
-    st.markdown(
-        '<div class="calculate-button">',
-        unsafe_allow_html=True
-    )
-
-    calcular = st.button(
-        "🏄  CALCULAR MEU VOLUME",
-        key="calcular"
-    )
-
-    st.markdown(
-        '</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown("</div>", unsafe_allow_html=True)
-
-
-# ============================================================
-# PRANCHA CENTRAL
-# ============================================================
-
-with col_center:
-
-    # --------------------------------------------------------
-    # SVG DA PRANCHA
-    # --------------------------------------------------------
-
-    board_html = """
-    <!DOCTYPE html>
-
-    <html>
-
-    <head>
-
-    <style>
-
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-
-        margin: 0;
-
-        width: 100vw;
-
-        height: 625px;
-
-        overflow: hidden;
-
-        background: transparent;
-
-        display: flex;
-
-        justify-content: center;
-
-        align-items: center;
-
-        font-family: Arial;
-    }
-
-
-    .scene {
-
-        width: 100%;
-
-        height: 100%;
-
-        position: relative;
-
-        display: flex;
-
-        justify-content: center;
-
-        align-items: center;
-    }
-
-
-    /* brilho */
-
-    .glow {
-
-        position: absolute;
-
-        width: 300px;
-
-        height: 600px;
-
-        border-radius: 50%;
-
-        background:
-            radial-gradient(
-                ellipse,
-                rgba(0,170,220,0.20),
-                transparent 68%
-            );
-
-        filter: blur(18px);
-    }
-
-
-    /* ondas */
-
-    .wave {
-
-        position: absolute;
-
-        width: 100%;
-
-        height: 100px;
-
-        opacity: 0.18;
-
-        background:
-            repeating-linear-gradient(
-                -12deg,
-                transparent 0px,
-                transparent 28px,
-                #0b8daa 29px,
-                #0b8daa 48px,
-                transparent 49px,
-                transparent 75px
-            );
-
-        left: 0;
-
-        bottom: 60px;
-    }
-
-
-    .wave2 {
-
-        bottom: 140px;
-
-        opacity: 0.08;
-    }
-
-
-    /* prancha */
-
-    .board {
-
-        width: 112px;
-
-        height: 475px;
-
-        position: relative;
-
-        z-index: 5;
-
-        border-radius:
-            54% 54% 47% 47%
-            /
-            13% 13% 10% 10%;
-
-        background:
-            linear-gradient(
-                90deg,
-                #d1cec0 0%,
-                #f0eee1 13%,
-                #fffef3 50%,
-                #f0eee1 87%,
-                #d1cec0 100%
-            );
-
-        box-shadow:
-
-            0 25px 45px rgba(0,0,0,0.48),
-
-            inset 6px 0 9px rgba(255,255,255,0.65),
-
-            inset -6px 0 9px rgba(0,0,0,0.12);
-    }
-
-
-    /* stringer */
-
-    .stringer {
-
-        position: absolute;
-
-        top: 5%;
-
-        left: 50%;
-
-        transform: translateX(-50%);
-
-        width: 3px;
-
-        height: 90%;
-
-        background: #a8b3b2;
-
-        opacity: 0.7;
-    }
-
-
-    /* logo */
-
-    .logo {
-
-        position: absolute;
-
-        top: 46%;
-
-        left: 50%;
-
-        transform:
-            translate(-50%, -50%)
-            rotate(-90deg);
-
-        font-family: Arial Black;
-
-        font-size: 26px;
-
-        letter-spacing: 3px;
-
-        color: #078eaf;
-    }
-
-
-    /* quilha */
-
-    .fin {
-
-        position: absolute;
-
-        bottom: -34px;
-
-        left: 50%;
-
-        transform: translateX(-50%);
-
-        width: 34px;
-
-        height: 52px;
-
-        background:
-            linear-gradient(
-                90deg,
-                #172d35,
-                #071922
-            );
-
-        clip-path:
-            polygon(
-                50% 100%,
-                0 0,
-                100% 0
-            );
-    }
-
-
-    </style>
-
-    </head>
-
-
-    <body>
-
-        <div class="scene">
-
-            <div class="glow"></div>
-
-            <div class="wave"></div>
-
-            <div class="wave wave2"></div>
-
-            <div class="board">
-
-                <div class="stringer"></div>
-
-                <div class="logo">
-                    SURF
-                </div>
-
-                <div class="fin"></div>
-
-            </div>
-
-        </div>
-
-    </body>
-
-    </html>
-    """
-
-    components.html(
-        board_html,
-        height=625,
-        scrolling=False
-    )
+        calcular = st.button(
+            "🏄  CALCULAR MEU VOLUME",
+            use_container_width=True
+        )
 
 
 # ============================================================
@@ -1022,37 +605,28 @@ if calcular:
         tipo_prancha = "SOFTBOARD"
 
         descricao = (
-            "Como você ainda não surfou, o ideal é começar "
-            "com uma prancha bastante estável. Uma softboard "
-            "entre 90 e 110 litros facilita o aprendizado, "
-            "a remada e o equilíbrio."
+            "Como você ainda não surfou, recomendamos "
+            "uma softboard entre 90 e 110 litros. "
+            "O maior volume proporciona mais estabilidade "
+            "e facilita o aprendizado."
         )
 
     else:
 
-        # ----------------------------------------------------
-        # COEFICIENTES ORIGINAIS
-        # ----------------------------------------------------
+        # ====================================================
+        # FÓRMULA ORIGINAL
+        # ====================================================
 
         coeficientes = {
-
             1: 0.65,
-
             2: 0.50,
-
             3: 0.42,
-
             4: 0.36,
-
             5: 0.32
         }
 
         cf = coeficientes[nivel]
 
-
-        # ----------------------------------------------------
-        # FREQUÊNCIA ORIGINAL
-        # ----------------------------------------------------
 
         if frequencia >= 5:
 
@@ -1067,16 +641,12 @@ if calcular:
             multiplicador = 0
 
 
-        # ----------------------------------------------------
-        # FÓRMULA ORIGINAL
-        # ----------------------------------------------------
-
         volume = peso * cf + multiplicador
 
 
-        # ----------------------------------------------------
-        # TIPO DE PRANCHA
-        # ----------------------------------------------------
+        # ====================================================
+        # RECOMENDAÇÃO
+        # ====================================================
 
         if nivel == 1:
 
@@ -1123,194 +693,519 @@ if calcular:
                 "surfistas experientes buscando performance."
             )
 
+else:
+
+    volume = None
+
+    tipo_prancha = None
+
+    descricao = None
+
 
 # ============================================================
-# RECOMENDAÇÃO
+# CENTRO — PRANCHA
 # ============================================================
 
-with col_right:
+with col_centro:
 
     # --------------------------------------------------------
-    # PAINEL
+    # DIMENSÕES DINÂMICAS
     # --------------------------------------------------------
 
-    st.markdown(
-        '<div class="recommendation-panel">',
-        unsafe_allow_html=True
-    )
+    if volume is None:
 
-    st.markdown(
-        '<div class="panel-title">RECOMENDAÇÃO</div>',
-        unsafe_allow_html=True
-    )
-
-
-    # --------------------------------------------------------
-    # ANTES DE CALCULAR
-    # --------------------------------------------------------
-
-    if not calcular:
-
-        st.markdown(
-            """
-            <div class="placeholder">
-
-                <div>
-
-                    <div style="
-                        font-size:55px;
-                        margin-bottom:15px;
-                    ">
-                        🌊
-                    </div>
-
-                    <strong>
-                        AJUSTE SEU PERFIL
-                    </strong>
-
-                    <br>
-
-                    E DESCUBRA<br>
-
-                    <strong>
-                        SUA PRANCHA IDEAL.
-                    </strong>
-
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-
-    # --------------------------------------------------------
-    # DEPOIS DE CALCULAR
-    # --------------------------------------------------------
+        board_height = 440
+        board_width = 82
 
     else:
 
-        st.markdown(
-            '<div class="rec-label">SUA PRANCHA IDEAL</div>',
-            unsafe_allow_html=True
+        # Quanto maior o volume, maior a prancha visualmente.
+        # Limitamos os valores para não ficar exagerado.
+
+        board_height = int(
+            max(
+                390,
+                min(
+                    510,
+                    390 + volume * 2
+                )
+            )
         )
 
-        st.markdown(
-            f'<div class="rec-title">{tipo_prancha}</div>',
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            '<div class="rec-line"></div>',
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            '<div class="rec-label">VOLUME RECOMENDADO</div>',
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            f'<div class="rec-volume">{volume:.1f}L</div>',
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            '<div class="rec-line"></div>',
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            f'<div class="rec-description">{descricao}</div>',
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            '<div class="rec-line"></div>',
-            unsafe_allow_html=True
-        )
+        board_width = int(
+            max(
+                70,
+                min(
+                    125,
+                    65 + volume * 1.1
+                )
+            )
 
 
-        # ----------------------------------------------------
-        # INFORMAÇÕES
-        # ----------------------------------------------------
+    # --------------------------------------------------------
+    # PRANCHA SVG
+    # --------------------------------------------------------
 
-        st.markdown(
-            f"""
-            <div class="info">
+    board_html = f"""
+    <html>
 
-                <div class="info-label">
-                    SEU PESO
+    <head>
+
+    <style>
+
+    html, body {{
+
+        margin: 0;
+
+        padding: 0;
+
+        width: 100%;
+
+        height: 100%;
+
+        overflow: hidden;
+
+        background: transparent;
+    }}
+
+
+    .scene {{
+
+        width: 100%;
+
+        height: 600px;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        position: relative;
+    }}
+
+
+    .glow {{
+
+        position: absolute;
+
+        width: 280px;
+
+        height: 580px;
+
+        border-radius: 50%;
+
+        background:
+            radial-gradient(
+                ellipse,
+                rgba(0,180,220,0.18),
+                transparent 70%
+            );
+
+        filter: blur(20px);
+    }}
+
+
+    .wave {{
+
+        position: absolute;
+
+        width: 100%;
+
+        height: 100px;
+
+        bottom: 40px;
+
+        opacity: 0.16;
+
+        background:
+            repeating-linear-gradient(
+                -12deg,
+                transparent 0px,
+                transparent 28px,
+                #078baa 29px,
+                #078baa 48px,
+                transparent 49px,
+                transparent 75px
+            );
+    }}
+
+
+    .board {{
+
+        position: relative;
+
+        width: {board_width}px;
+
+        height: {board_height}px;
+
+        border-radius:
+            55% 55% 48% 48%
+            /
+            13% 13% 10% 10%;
+
+        background:
+            linear-gradient(
+                90deg,
+                #cfcbbd 0%,
+                #efede1 13%,
+                #fffef5 50%,
+                #efede1 87%,
+                #cfcbbd 100%
+            );
+
+        box-shadow:
+
+            0 25px 45px rgba(0,0,0,0.5),
+
+            inset 6px 0 8px
+                rgba(255,255,255,0.7),
+
+            inset -6px 0 8px
+                rgba(0,0,0,0.12);
+
+        z-index: 5;
+
+        transition:
+            width 0.5s ease,
+            height 0.5s ease;
+    }}
+
+
+    .stringer {{
+
+        position: absolute;
+
+        width: 3px;
+
+        height: 90%;
+
+        top: 5%;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        background: #a8b2b1;
+
+        opacity: 0.75;
+    }}
+
+
+    .logo {{
+
+        position: absolute;
+
+        top: 45%;
+
+        left: 50%;
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-90deg);
+
+        font-family: Arial Black;
+
+        font-size: 25px;
+
+        letter-spacing: 3px;
+
+        color: #078eaf;
+
+        white-space: nowrap;
+    }}
+
+
+    .fin {{
+
+        position: absolute;
+
+        bottom: -31px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: 32px;
+
+        height: 47px;
+
+        background: #102a33;
+
+        clip-path:
+            polygon(
+                50% 100%,
+                0 0,
+                100% 0
+            );
+    }}
+
+
+    .volume {{
+
+        position: absolute;
+
+        left: 50%;
+
+        top: 50%;
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-90deg);
+
+        font-family: Arial Black;
+
+        font-size: 15px;
+
+        color: rgba(7,142,175,0.7);
+
+        white-space: nowrap;
+    }}
+
+    </style>
+
+    </head>
+
+    <body>
+
+        <div class="scene">
+
+            <div class="glow"></div>
+
+            <div class="wave"></div>
+
+            <div class="board">
+
+                <div class="stringer"></div>
+
+                <div class="logo">
+                    SURF
                 </div>
 
-                <div class="info-value">
-                    {peso} kg
-                </div>
+                {
+                    f'<div class="volume">{volume:.1f}L</div>'
+                    if volume is not None
+                    else ''
+                }
+
+                <div class="fin"></div>
 
             </div>
-            """,
-            unsafe_allow_html=True
-        )
+
+        </div>
+
+    </body>
+
+    </html>
+    """
 
 
-        st.markdown(
-            f"""
-            <div class="info">
-
-                <div class="info-label">
-                    SUA ALTURA
-                </div>
-
-                <div class="info-value">
-                    {altura} cm
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-
-        st.markdown(
-            f"""
-            <div class="info">
-
-                <div class="info-label">
-                    NÍVEL
-                </div>
-
-                <div class="info-value">
-                    {nivel}/5
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-
-        st.markdown(
-            f"""
-            <div class="info">
-
-                <div class="info-label">
-                    FREQUÊNCIA
-                </div>
-
-                <div class="info-value">
-                    {frequencia}x por mês
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-
-    st.markdown(
-        '</div>',
-        unsafe_allow_html=True
+    components.html(
+        board_html,
+        height=600,
+        scrolling=False
     )
+
+
+# ============================================================
+# DIREITA — RECOMENDAÇÃO
+# ============================================================
+
+with col_direita:
+
+    # ========================================================
+    # CAIXA REAL DO STREAMLIT
+    # ========================================================
+
+    with st.container(border=True):
+
+        st.markdown(
+            '<div class="panel-title">RECOMENDAÇÃO</div>',
+            unsafe_allow_html=True
+        )
+
+
+        # ----------------------------------------------------
+        # ANTES DE CALCULAR
+        # ----------------------------------------------------
+
+        if not calcular:
+
+            st.markdown(
+                """
+                <div class="placeholder">
+
+                    <div>
+
+                        <div style="
+                            font-size:50px;
+                            margin-bottom:15px;
+                        ">
+                            🌊
+                        </div>
+
+                        <strong>
+                            AJUSTE SEU PERFIL
+                        </strong>
+
+                        <br>
+
+                        E DESCUBRA<br>
+
+                        <strong>
+                            SUA PRANCHA IDEAL
+                        </strong>
+
+                    </div>
+
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+
+        # ----------------------------------------------------
+        # RESULTADO
+        # ----------------------------------------------------
+
+        else:
+
+            st.markdown(
+                '<div class="rec-label">'
+                'SUA PRANCHA IDEAL'
+                '</div>',
+                unsafe_allow_html=True
+            )
+
+
+            st.markdown(
+                f'<div class="rec-board">{tipo_prancha}</div>',
+                unsafe_allow_html=True
+            )
+
+
+            st.markdown(
+                '<div class="rec-line"></div>',
+                unsafe_allow_html=True
+            )
+
+
+            st.markdown(
+                '<div class="rec-label">'
+                'VOLUME RECOMENDADO'
+                '</div>',
+                unsafe_allow_html=True
+            )
+
+
+            st.markdown(
+                f'<div class="rec-volume">'
+                f'{volume:.1f}L'
+                f'</div>',
+                unsafe_allow_html=True
+            )
+
+
+            st.markdown(
+                '<div class="rec-description">'
+                f'{descricao}'
+                '</div>',
+                unsafe_allow_html=True
+            )
+
+
+            st.markdown(
+                '<div class="rec-line"></div>',
+                unsafe_allow_html=True
+            )
+
+
+            # ------------------------------------------------
+            # PESO
+            # ------------------------------------------------
+
+            st.markdown(
+                f"""
+                <div class="info-box">
+
+                    <div class="info-name">
+                        PESO
+                    </div>
+
+                    <div class="info-value">
+                        {peso} kg
+                    </div>
+
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+
+            # ------------------------------------------------
+            # ALTURA
+            # ------------------------------------------------
+
+            st.markdown(
+                f"""
+                <div class="info-box">
+
+                    <div class="info-name">
+                        ALTURA
+                    </div>
+
+                    <div class="info-value">
+                        {altura} cm
+                    </div>
+
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+
+            # ------------------------------------------------
+            # NÍVEL
+            # ------------------------------------------------
+
+            st.markdown(
+                f"""
+                <div class="info-box">
+
+                    <div class="info-name">
+                        NÍVEL
+                    </div>
+
+                    <div class="info-value">
+                        {nivel}/5
+                    </div>
+
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+
+            # ------------------------------------------------
+            # FREQUÊNCIA
+            # ------------------------------------------------
+
+            st.markdown(
+                f"""
+                <div class="info-box">
+
+                    <div class="info-name">
+                        FREQUÊNCIA
+                    </div>
+
+                    <div class="info-value">
+                        {frequencia}x por mês
+                    </div>
+
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
 
 # ============================================================
@@ -1321,7 +1216,7 @@ st.markdown(
     """
     <div style="
         text-align:center;
-        margin-top:35px;
+        margin-top:30px;
         color:#477f8c;
         font-size:10px;
         font-weight:700;
